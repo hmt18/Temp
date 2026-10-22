@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Operative Preparation Nursing Record</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 14px;
+      background: #f3f3f3;
+      color: #222;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .document {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 14px 18px 18px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+    .intro { margin: 0 0 8px; font-weight: 500; }
+    .item {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      column-gap: 7px;
+      margin: 7px 0;
+      align-items: start;
+    }
+    .number { text-align: left; }
+    .content { min-width: 0; }
+    .line, .options {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px 15px;
+    }
+    .field {
+      height: 27px;
+      padding: 3px 7px;
+      border: 1px solid #c9c9c9;
+      border-radius: 4px;
+      background: #fff;
+      color: #222;
+      font: inherit;
+      min-width: 0;
+    }
+    .field:focus { outline: 2px solid #9bbce8; outline-offset: 1px; }
+    .short { width: 125px; }
+    .medium { width: 145px; }
+    .long { width: min(100%, 260px); }
+    .date { width: 125px; }
+    .time { width: 125px; }
+    .check {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    input[type="checkbox"], input[type="radio"] {
+      margin: 0;
+      accent-color: #555;
+      width: 15px;
+      height: 15px;
+    }
+    .sub-options { margin-top: 8px; }
+    .subline { margin-top: 4px; }
+    .signature { width: min(100%, 260px); }
+    .notes {
+      width: 100%;
+      min-height: 54px;
+      resize: vertical;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid #e5e5e5;
+    }
+    button {
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      padding: 8px 15px;
+      font: inherit;
+      cursor: pointer;
+      background: #f7f7f7;
+    }
+    button.primary { background: #333; color: #fff; border-color: #333; }
+    @media (max-width: 600px) {
+      body { padding: 0; font-size: 13px; }
+      .document { padding: 12px; border-left: 0; border-right: 0; }
+      .item { grid-template-columns: 23px minmax(0, 1fr); column-gap: 5px; }
+      .line { gap: 7px; }
+      .field { max-width: 100%; }
+      .date, .time { width: 110px; }
+    }
+    @media print {
+      body { padding: 0; background: #fff; }
+      .document { max-width: none; border: 0; box-shadow: none; padding: 0; }
+      .actions { display: none; }
+      .field { border-color: #aaa; }
+    }
+  </style>
+</head>
+<body>
+  <main class="document">
+    <form id="nursingRecord">
+      <p class="intro">Document the following in the patient's nursing record:</p>
+
+      <div class="item">
+        <div class="number">1.</div>
+        <div class="content">
+          <div class="line">
+            <label for="prepDate">Date and time of pre-operative preparation.</label>
+            <input class="field date" id="prepDate" name="preparationDate" type="date" aria-label="Date of pre-operative preparation">
+            <input class="field time" id="prepTime" name="preparationTime" type="time" aria-label="Time of pre-operative preparation">
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">2.</div>
+        <div class="content">
+          <div class="line">
+            <span>Patient identification and diagnosis.</span>
+            <label class="check"><input type="radio" name="identificationDiagnosis" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="identificationDiagnosis" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">3.</div>
+        <div class="content">
+          <div>Baseline vital signs –</div>
+          <div class="options sub-options">
+            <label class="check"><input type="checkbox" name="vitals" value="Temperature"> Temperature</label>
+            <label class="check"><input type="checkbox" name="vitals" value="Pulse"> Pulse</label>
+            <label class="check"><input type="checkbox" name="vitals" value="Respiration"> Respiration</label>
+            <label class="check"><input type="checkbox" name="vitals" value="BP"> BP</label>
+            <label class="check"><input type="checkbox" name="vitals" value="SpO2"> SpO2</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">4.</div>
+        <div class="content">
+          <div class="line">
+            <label for="assessment">General physical and psychological assessment, including anxiety level.</label>
+            <input class="field short" id="assessment" name="assessment" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">5.</div>
+        <div class="content">
+          <div class="line">
+            <span>Allergies –</span>
+            <label class="check"><input type="checkbox" name="allergies" value="Drug"> Drug</label>
+            <label class="check"><input type="checkbox" name="allergies" value="Food"> Food</label>
+            <label class="check"><input type="checkbox" name="allergies" value="Latex"> Latex</label>
+            <label class="check"><input type="checkbox" name="allergies" value="Other"> Other</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">6.</div>
+        <div class="content">
+          <div class="line">
+            <span>Medical and medication history relevant to surgery.</span>
+            <label class="check"><input type="radio" name="medicalHistory" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="medicalHistory" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">7.</div>
+        <div class="content">
+          <div class="line">
+            <span>Fasting/NPO status and time of last oral intake.</span>
+            <label class="check"><input type="radio" name="fastingStatus" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="fastingStatus" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">8.</div>
+        <div class="content">
+          <div class="line">
+            <span>Investigations and reports reviewed and any abnormal findings.</span>
+            <label class="check"><input type="radio" name="investigations" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="investigations" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">9.</div>
+        <div class="content">
+          <div class="line">
+            <span>Informed consent status as per hospital policy.</span>
+            <label class="check"><input type="radio" name="consent" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="consent" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">10.</div>
+        <div class="content">
+          <div class="line">
+            <span>Operative-site preparation and skin preparation performed.</span>
+            <label class="check"><input type="radio" name="sitePreparation" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="sitePreparation" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">11.</div>
+        <div class="content">
+          <div class="line">
+            <span>Pre-operative medications/premedications administered,</span>
+            <label class="check"><input type="radio" name="premedication" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="premedication" value="No"> No</label>
+          </div>
+          <div class="subline">including drug, dose, route and time.</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">12.</div>
+        <div class="content">
+          <div>Removal of personal articles such as jewelry, dentures and</div>
+          <div class="subline line">
+            <span>contact lenses, and safe storage of belongings.</span>
+            <label class="check"><input type="radio" name="personalArticles" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="personalArticles" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">13.</div>
+        <div class="content">
+          <div class="line">
+            <span>Bladder/bowel preparation, if ordered.</span>
+            <label class="check"><input type="radio" name="bladderBowel" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="bladderBowel" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">14.</div>
+        <div class="content">
+          <div>Pre-operative teaching provided—</div>
+          <div class="subline">deep breathing, coughing, leg exercises, incentive spirometry, etc.</div>
+          <div class="sub-options">
+            <label class="check"><input type="radio" name="teaching" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="teaching" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">15.</div>
+        <div class="content">
+          <div class="line">
+            <label for="response">Patient's response and tolerance to preparation.</label>
+            <input class="field medium" id="response" name="patientResponse" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">16.</div>
+        <div class="content">
+          <div class="line">
+            <span>Patient transferred to OT safely with required records/reports.</span>
+            <label class="check"><input type="radio" name="transferToOT" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="transferToOT" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">17.</div>
+        <div class="content">
+          <div class="line">
+            <span>Handover given to OT nurse.</span>
+            <label class="check"><input type="radio" name="handover" value="Yes"> Yes</label>
+            <label class="check"><input type="radio" name="handover" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="number">18.</div>
+        <div class="content">
+          <div class="line">
+            <label for="nurseSignature">Name/signature and designation of the nurse performing the care.</label>
+            <input class="field signature" id="nurseSignature" name="nurseSignature" type="text" placeholder="Name Here">
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="reset">Clear Form</button>
+        <button type="button" class="primary" onclick="window.print()">Print Record</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
