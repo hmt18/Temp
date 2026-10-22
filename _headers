@@ -1,3 +1,5 @@
 
 /*
   Content-Security-Policy: frame-ancestors *
+  Cross-Origin-Resource-Policy: cross-origin
+  Cross-Origin-Embedder-Policy: credentialless
